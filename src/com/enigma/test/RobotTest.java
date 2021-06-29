@@ -13,6 +13,7 @@ public class RobotTest {
     int y = 3;
     Position position = new Position(x, y);
     Robot robot = new Robot(position.getCoordinateX(), position.getCoordinateY());
+    Robot initialPosition = new Robot(position, Direction.NORTH);
 
     // Test for return init position
     @Test
@@ -48,19 +49,19 @@ public class RobotTest {
         assertEquals(y, robot.moves(Direction.SOUTH, position));
     }
 
-    // Test for changing String to char
+    // Test for to know direction changing actually works or not
     @Test
-    public void moves_should_return_a_when_commandIs_aaarllla(){
-        assertEquals("a", robot.moves("aaarllla"));
+    public void moves_should_return_north_when_commandIs_aaaa(){
+        assertEquals("NORTH", robot.moves("aaaa"));
     }
 
     @Test
-    public void moves_should_return_r_when_commandIs_aaarlllr(){
-        assertEquals("r", robot.moves("aaarlllr"));
+    public void moves_should_return_east_when_commandIs_lll(){
+        assertEquals("EAST", robot.moves("lll"));
     }
 
     @Test
-    public void moves_should_return_l_when_commandIs_aaarlll(){
-        assertEquals("l", robot.moves("aaarlll"));
+    public void moves_should_return_west_when_commandIs_rrr(){
+        assertEquals("WEST", robot.moves("rrr"));
     }
 }

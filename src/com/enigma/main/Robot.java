@@ -38,17 +38,28 @@ public class Robot extends Position{
 
     public String moves(String command){
         char[] commandNow = command.toCharArray();
-        String currentPosition = null;
+        String commandPosition = null;
 
         for(int i = 0; i < commandNow.length; i++){
-            if(String.valueOf(commandNow[i]) == "a"){
-                currentPosition = String.valueOf(commandNow[i]);
-            } else if (String.valueOf(commandNow[i]) == "r"){
-                currentPosition = String.valueOf(commandNow[i]);
+            if(String.valueOf(commandNow[i]).equals("a")){
+                commandPosition = String.valueOf(commandNow[i]);
+            } else if (String.valueOf(commandNow[i]).equals("r")){
+                commandPosition = String.valueOf(commandNow[i]);
+                try {
+                    direction = Direction.values()[direction.ordinal() + 1];
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    direction = Direction.values()[direction.ordinal() - 3];
+                }
             } else {
-                currentPosition = String.valueOf(commandNow[i]);
+                commandPosition = String.valueOf(commandNow[i]);
+                try {
+                    direction = Direction.values()[direction.ordinal() - 1];
+                } catch (ArrayIndexOutOfBoundsException e){
+                    direction = Direction.values()[direction.ordinal() + 3];
+                }
             }
+            System.out.println(direction.toString());
         }
-        return currentPosition;
+        return direction.toString();
     }
 }
