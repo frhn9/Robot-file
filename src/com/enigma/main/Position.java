@@ -2,12 +2,8 @@ package com.enigma.main;
 
 public class Position {
 
-    protected int coordinateX;
-    protected int coordinateY;
-
-    public Position(){
-
-    }
+    private int coordinateX;
+    private int coordinateY;
 
     public Position(int coordinateX, int coordinateY){
         this.coordinateX = coordinateX;

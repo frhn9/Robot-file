@@ -1,13 +1,9 @@
 package com.enigma.main;
 
-public class Robot extends Position {
+public class Robot {
 
-    Position position = new Position();
-    Direction direction = Direction.NORTH;
-
-    public Robot(int coordinateX, int coordinateY) {
-        super(coordinateX, coordinateY);
-    }
+    private Position position;
+    private Direction direction;
 
     public Robot(Position position, Direction direction) {
         this.position = position;
