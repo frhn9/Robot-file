@@ -36,5 +36,19 @@ public class Robot extends Position{
         return 0;
     }
 
+    public String moves(String command){
+        char[] commandNow = command.toCharArray();
+        String currentPosition = null;
 
+        for(int i = 0; i < commandNow.length; i++){
+            if(String.valueOf(commandNow[i]) == "a"){
+                currentPosition = String.valueOf(commandNow[i]);
+            } else if (String.valueOf(commandNow[i]) == "r"){
+                currentPosition = String.valueOf(commandNow[i]);
+            } else {
+                currentPosition = String.valueOf(commandNow[i]);
+            }
+        }
+        return currentPosition;
+    }
 }

@@ -47,4 +47,20 @@ public class RobotTest {
     public void move_should_return_y_yIs3_when_directionIsSouth(){
         assertEquals(y, robot.moves(Direction.SOUTH, position));
     }
+
+    // Test for changing String to char
+    @Test
+    public void moves_should_return_a_when_commandIs_aaarllla(){
+        assertEquals("a", robot.moves("aaarllla"));
+    }
+
+    @Test
+    public void moves_should_return_r_when_commandIs_aaarlllr(){
+        assertEquals("r", robot.moves("aaarlllr"));
+    }
+
+    @Test
+    public void moves_should_return_l_when_commandIs_aaarlll(){
+        assertEquals("l", robot.moves("aaarlll"));
+    }
 }
