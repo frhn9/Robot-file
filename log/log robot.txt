@@ -1,0 +1,7 @@
+SOUTH	->	(4, -1)
+SOUTH	->	(4, -1)
+SOUTH	->	(4, -1)
+SOUTH	->	(4, -1)
+SOUTH	->	(4, -1)
+SOUTH	->	(4, -1)
+SOUTH	->	(4, -1)

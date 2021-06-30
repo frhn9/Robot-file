@@ -2,6 +2,7 @@ package com.enigma.main;
 
 import com.enigma.constant.Constant;
 
+import java.io.*;
 import java.util.Locale;
 
 public class Robot {
@@ -34,9 +35,30 @@ public class Robot {
                         direction = position.turnLeft(direction);
                         break;
                 }
-                System.out.println(this);
-            } catch (Exception e){
+                addFile(commandArr);
+            } catch (ArrayIndexOutOfBoundsException e){
                 viewCommandError();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void addFile(char[] commandAr) throws IOException {
+        String path = "C:\\Users\\admin\\IdeaProjects\\Robot\\log\\log robot.txt";
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+
+        for(int i = 0; i < commandAr.length; i++){
+            bufferedWriter.write(String.valueOf(this));
+            bufferedWriter.newLine();
+            if(commandAr.length == i+1){
+                while (true){
+                    String text = bufferedReader.readLine();
+                    if(text == null) break;
+                    System.out.println(text);
+                }
+                bufferedWriter.close();
             }
         }
     }
