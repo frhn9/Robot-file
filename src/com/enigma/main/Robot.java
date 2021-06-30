@@ -71,22 +71,26 @@ public class Robot {
                 String text = bufferedReader.readLine();
                 if(text == null) break;
                 System.out.println(text);
-                for (int i = 0; i < text.length(); i++) {
-                    String[] part = text.split("->");
-                    String[] nextCoordinatePart = part[1].split("\t");
-                    String[] lastCoordinatePart = nextCoordinatePart[1].split(",");
-                    String[] nextCoordinatePartY = lastCoordinatePart[1].split("\\)");
-                    String[] lastX = lastCoordinatePart[0].split("\\(");
-                    String[] lastY = nextCoordinatePartY[0].split(" ");
-                    String[] nextDirectionPart = part[0].split("\t");
-                    lastDirection = Direction.valueOf(nextDirectionPart[0]);
-                    lastSavedX = Integer.parseInt(lastX[1]);
-                    lastSavedY = Integer.parseInt(lastY[1]);
-                }
+                setLastPosition(text);
             }
             addMovetoExisting(lastDirection, lastSavedX, lastSavedY, command);
         } catch (IOException e){
             e.printStackTrace();
+        }
+    }
+
+    private void setLastPosition(String text) {
+        for (int i = 0; i < text.length(); i++) {
+            String[] part = text.split("->");
+            String[] nextCoordinatePart = part[1].split("\t");
+            String[] lastCoordinatePart = nextCoordinatePart[1].split(",");
+            String[] nextCoordinatePartY = lastCoordinatePart[1].split("\\)");
+            String[] lastX = lastCoordinatePart[0].split("\\(");
+            String[] lastY = nextCoordinatePartY[0].split(" ");
+            String[] nextDirectionPart = part[0].split("\t");
+            lastDirection = Direction.valueOf(nextDirectionPart[0]);
+            lastSavedX = Integer.parseInt(lastX[1]);
+            lastSavedY = Integer.parseInt(lastY[1]);
         }
     }
 
