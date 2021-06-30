@@ -10,6 +10,14 @@ public class Position {
         this.coordinateY = coordinateY;
     }
 
+    public void setCoordinateX(int coordinateX) {
+        this.coordinateX = coordinateX;
+    }
+
+    public void setCoordinateY(int coordinateY) {
+        this.coordinateY = coordinateY;
+    }
+
     public Position getEast(){
         return new Position(coordinateX+1, this.coordinateY);
     }
@@ -30,7 +38,7 @@ public class Position {
         try {
             return Direction.values()[direction.ordinal() + 1];
         } catch (ArrayIndexOutOfBoundsException e) {
-            return Direction.values()[direction.ordinal() - Direction.values().length];
+            return Direction.values()[direction.ordinal() - (Direction.values().length-1)];
         }
     }
 
@@ -38,7 +46,7 @@ public class Position {
         try {
             return Direction.values()[direction.ordinal() - 1];
         } catch (ArrayIndexOutOfBoundsException e) {
-            return Direction.values()[direction.ordinal() + Direction.values().length];
+            return Direction.values()[direction.ordinal() + (Direction.values().length-1)];
         }
     }
 

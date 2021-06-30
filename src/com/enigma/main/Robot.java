@@ -10,6 +10,12 @@ public class Robot {
     private Position position;
     private Direction direction;
 
+    private String path = "C:\\Users\\admin\\IdeaProjects\\Robot\\log\\log robot.txt";
+
+    private Direction lastDirection;
+    private int lastSavedX = 0;
+    private int lastSavedY = 0;
+
     public Robot(Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
@@ -36,6 +42,7 @@ public class Robot {
                         break;
                 }
                 addFile(commandArr);
+                System.out.println(this);
             } catch (ArrayIndexOutOfBoundsException e){
                 viewCommandError();
             } catch (IOException e) {
@@ -45,10 +52,7 @@ public class Robot {
     }
 
     private void addFile(char[] commandAr) throws IOException {
-        String path = "C:\\Users\\admin\\IdeaProjects\\Robot\\log\\log robot.txt";
-        File myFile = new File(path);
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(myFile.getAbsoluteFile(), true));
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true));
 
         for(int i = 0; i < commandAr.length; i++){
             if(commandAr.length == i+1){
@@ -57,6 +61,36 @@ public class Robot {
 
                 bufferedWriter.close();
             }
+        }
+    }
+
+    public void addMovetoExisting(String command){
+        try{
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+            while(true){
+                String text = bufferedReader.readLine();
+                if(text == null) break;
+                System.out.println(text);
+                for (int i = 0; i < text.length(); i++) {
+                    String[] part = text.split("->");
+                    String[] nextCoordinatePart = part[1].split("\t");
+                    String[] lastCoordinatePart = nextCoordinatePart[1].split(",");
+                    String[] nextCoordinatePartY = lastCoordinatePart[1].split("\\)");
+                    String[] lastX = lastCoordinatePart[0].split("\\(");
+                    String[] lastY = nextCoordinatePartY[0].split(" ");
+                    String[] nextDirectionPart = part[0].split("\t");
+                    lastDirection = Direction.valueOf(nextDirectionPart[0]);
+                    lastSavedX = Integer.parseInt(lastX[1]);
+                    lastSavedY = Integer.parseInt(lastY[1]);
+                }
+            }
+            direction = lastDirection;
+            position.setCoordinateX(lastSavedX);
+            position.setCoordinateY(lastSavedY);
+            System.out.println("Last Direction : "+lastDirection.toString()+ " "+lastSavedX+" "+lastSavedY);
+            moves(command);
+        } catch (IOException e){
+            e.printStackTrace();
         }
     }
 
