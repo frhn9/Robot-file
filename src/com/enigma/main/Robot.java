@@ -46,18 +46,15 @@ public class Robot {
 
     private void addFile(char[] commandAr) throws IOException {
         String path = "C:\\Users\\admin\\IdeaProjects\\Robot\\log\\log robot.txt";
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path));
+        File myFile = new File(path);
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(myFile.getAbsoluteFile(), true));
         BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
 
         for(int i = 0; i < commandAr.length; i++){
-            bufferedWriter.write(String.valueOf(this));
-            bufferedWriter.newLine();
             if(commandAr.length == i+1){
-                while (true){
-                    String text = bufferedReader.readLine();
-                    if(text == null) break;
-                    System.out.println(text);
-                }
+                bufferedWriter.write(String.valueOf(this));
+                bufferedWriter.newLine();
+
                 bufferedWriter.close();
             }
         }
