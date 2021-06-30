@@ -10,12 +10,41 @@ public class Position {
         this.coordinateY = coordinateY;
     }
 
-    public int getCoordinateX() {
-        return coordinateX;
+    public Position getEast(){
+        return new Position(coordinateX+1, this.coordinateY);
     }
 
-    public int getCoordinateY() {
-        return coordinateY;
+    public Position getWest() {
+        return new Position(coordinateX-1, this.coordinateY);
     }
 
+    public Position getNorth() {
+        return new Position(coordinateX, this.coordinateY+1);
+    }
+
+    public Position getSouth() {
+        return new Position(coordinateX, this.coordinateY-1);
+    }
+
+    public Direction turnRight(Direction direction){
+        try {
+            return Direction.values()[direction.ordinal() + 1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return Direction.values()[direction.ordinal() - Direction.values().length];
+        }
+    }
+
+    public Direction turnLeft(Direction direction){
+        try {
+            return Direction.values()[direction.ordinal() - 1];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return Direction.values()[direction.ordinal() + Direction.values().length];
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "(" + coordinateX +
+                ", " + coordinateY+")";
+    }
 }

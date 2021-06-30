@@ -8,6 +8,6 @@ public class Main {
 
         Robot robot = new Robot(initialPosition, direction);
 
-        robot.moves("AARAAAA");
+        robot.moves("AaRaAAa");
     }
 }
