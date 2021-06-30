@@ -84,14 +84,18 @@ public class Robot {
                     lastSavedY = Integer.parseInt(lastY[1]);
                 }
             }
-            direction = lastDirection;
-            position.setCoordinateX(lastSavedX);
-            position.setCoordinateY(lastSavedY);
-            System.out.println("Last Direction : "+lastDirection.toString()+ " "+lastSavedX+" "+lastSavedY);
-            moves(command);
+            addMovetoExisting(lastDirection, lastSavedX, lastSavedY, command);
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    private void addMovetoExisting(Direction lastDirection, int lastSavedX, int lastSavedY, String command) {
+        direction = lastDirection;
+        position.setCoordinateX(lastSavedX);
+        position.setCoordinateY(lastSavedY);
+        System.out.println("Last Direction : "+lastDirection.toString()+ " "+lastSavedX+" "+lastSavedY);
+        moves(command);
     }
 
     private void viewCommandError() {
